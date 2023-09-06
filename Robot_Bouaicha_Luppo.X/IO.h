@@ -1,18 +1,20 @@
-/* 
- * File:   IO.h
- * Author: TP_EO_6
- *
- * Created on 5 septembre 2023, 16:15
- */
+#ifndef IO_H
+#define IO_H
 
-#include <stdio.h>
-#include <stdlib.h>
+//Affectation des pins des LEDS
+#define LED_ORANGE _LATC10 
+#define LED_BLEUE _LATG7
+#define LED_BLANCHE _LATG6
 
-/*
- * 
- */
-int main(int argc, char** argv) {
+//Définitions des pins pour les 6 hacheurs moteurs
 
-    return (EXIT_SUCCESS);
-}
+#define MOTEUR_GAUCHE_INL MOTEUR1_IN1
+#define MOTEUR_GAUCHE_INH MOTEUR1_IN2
+#define MOTEUR_GAUCHE_ENH IOCON1bits.PENL
+#define MOTEUR_GAUCHE_ENL IOCON1bits.PENH
+#define MOTEUR_GAUCHE_DUTY_CYCLE PDC1
 
+// Prototypes fonctions
+void InitIO();
+
+#endif /* IO_H */
