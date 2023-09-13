@@ -3,6 +3,7 @@
 #include <xc.h>
 #include "ChipConfig.h"
 #include "IO.h"
+#include "timer.h"
 
 //Pour les include, on utilise < et >
 
@@ -17,7 +18,8 @@ int main(void)
     // Configuration des entrées sorties
     /****************************************************************************************************/
     InitIO();
-
+    InitTimer23();
+    InitTimer1();
     LED_BLANCHE = 1;
     LED_BLEUE = 1;
     LED_ORANGE = 1;
@@ -25,6 +27,6 @@ int main(void)
     /****************************************************************************************************/
     // Boucle Principale
     /****************************************************************************************************/
-    while (1) {
+    while (1) { 
     }
 }//fin main 
