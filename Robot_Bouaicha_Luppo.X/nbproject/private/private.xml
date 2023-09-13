@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ChipConfig.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/IO.c</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ChipConfig.h</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/IO.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/main.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/IO.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ChipConfig.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/main.c</file>
         </group>
     </open-files>
