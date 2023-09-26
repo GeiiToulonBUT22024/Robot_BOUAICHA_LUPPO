@@ -4,6 +4,7 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
+#include "PWM.h"
 
 //Pour les include, on utilise < et >
 
