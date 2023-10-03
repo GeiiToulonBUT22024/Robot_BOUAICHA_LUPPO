@@ -12,8 +12,8 @@
 extern "C" {
 #endif
 
-void InitPWM(void);
-void PWMSetSpeed(float vitesseEnPourcents);
+void InitPWM();
+void PWMSetSpeed(float);
 
 
 #ifdef	__cplusplus
