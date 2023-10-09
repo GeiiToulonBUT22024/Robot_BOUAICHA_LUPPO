@@ -32,6 +32,7 @@ int main(void)
     // Boucle Principale
     /****************************************************************************************************/
     while (1) { 
-        PWMSetSpeed(60);
+        PWMUpdateSpeed();
+        //PWMSetSpeed(20,DROITE);
     }
 }//fin main 
