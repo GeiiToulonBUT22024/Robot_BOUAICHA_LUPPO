@@ -3,6 +3,8 @@
 #include "timer.h"
 #include "IO.h"
 #include "pwm.h"
+#include "ADC.h"
+
 unsigned char toggle = 0;
 //Initialisation d?un timer 32 bits
 void InitTimer23(void) {
@@ -25,7 +27,7 @@ T2CONbits.TON = 1; // Start 32-bit Timer
 
 }
 
-
+/*
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     LED_ORANGE = !LED_ORANGE;
@@ -42,7 +44,7 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
         toggle = 0;
     }
 
-}
+}*/
 //Initialisation d?un timer 16 bits
 void InitTimer1(void)
 {
@@ -63,6 +65,7 @@ void InitTimer1(void)
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
 {
     IFS0bits.T1IF = 0;
-    LED_BLANCHE = !LED_BLANCHE;
+    //LED_BLANCHE = !LED_BLANCHE;
+    ADC1StartConversionSequence();
 }
 // Le programme permet de pouvoir mesuerer le temps entre 
