@@ -12,7 +12,11 @@
 extern "C" {
 #endif
 
-
+void InitADC1(void);
+void ADC1StartConversionSequence();
+void ADCClearConversionFinishedFlag(void);
+unsigned int * ADCGetResult(void);
+unsigned char ADCIsConversionFinished(void);
 
 
 #ifdef	__cplusplus
@@ -21,4 +25,3 @@ extern "C" {
 
 #endif	/* ADC_H */
 
-void InitADC1(void);

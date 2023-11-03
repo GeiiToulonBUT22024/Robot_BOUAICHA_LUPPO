@@ -66,6 +66,7 @@ void InitADC1(void)
 }
 
 /* This is ADC interrupt routine */
+//Recupération des valeurs brut du capteur
 void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt(void)
 {
     IFS0bits.AD1IF = 0;
@@ -88,6 +89,7 @@ unsigned int * ADCGetResult(void)
 unsigned char ADCIsConversionFinished(void)
 {
     return ADCConversionFinishedFlag;
+
 }
 
 void ADCClearConversionFinishedFlag(void)
