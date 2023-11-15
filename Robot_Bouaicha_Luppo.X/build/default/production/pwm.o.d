@@ -1,4 +1,4 @@
-build/default/production/pwm.o: pwm.c IO.h PWM.h Robot.h toolbox.h
+build/default/production/pwm.o: pwm.c IO.h PWM.h Robot.h toolBox.h
 
 IO.h:
 
@@ -6,4 +6,4 @@ PWM.h:
 
 Robot.h:
 
-toolbox.h:
+toolBox.h:

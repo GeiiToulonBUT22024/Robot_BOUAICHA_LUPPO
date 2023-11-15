@@ -5,14 +5,24 @@
     <memory name="data">
       <units>bytes</units>
       <length>49152</length>
+<<<<<<< HEAD
       <used>62</used>
       <free>49090</free>
+=======
+      <used>22</used>
+      <free>49130</free>
+>>>>>>> parent of 94be18d (RobotV4.3)
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>524514</length>
+<<<<<<< HEAD
       <used>5685</used>
       <free>518829</free>
+=======
+      <used>3606</used>
+      <free>520908</free>
+>>>>>>> parent of 94be18d (RobotV4.3)
     </memory>
   </executable>
 </project>

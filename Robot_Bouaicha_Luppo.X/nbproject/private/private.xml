@@ -3,8 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ADC.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/timer1.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/main.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/pwm.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/IO.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ChipConfig.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ChipConfig.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/pwm.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/robot.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/timer.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/toolbox.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ADC.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/ADC.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/robot.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/main.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/toolbox.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/IO.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/Robot_Bouaicha_Luppo.X/nbproject/Makefile-default.mk</file>
         </group>
     </open-files>
 </project-private>

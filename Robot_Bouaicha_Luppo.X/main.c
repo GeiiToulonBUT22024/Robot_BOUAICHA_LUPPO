@@ -39,6 +39,7 @@ int main(void)
     /****************************************************************************************************/
     
     while (1) { 
+<<<<<<< HEAD
 
         if (ADCIsConversionFinished()){
             ADCClearConversionFinishedFlag();
@@ -86,5 +87,8 @@ int main(void)
         //PWMSetSpeed(20,DROITE);
     //tESTER SI LA CONVERSION EST FINIE
 
+=======
+        PWMSetSpeed(60);
+>>>>>>> parent of 94be18d (RobotV4.3)
     }
 }//fin main 
