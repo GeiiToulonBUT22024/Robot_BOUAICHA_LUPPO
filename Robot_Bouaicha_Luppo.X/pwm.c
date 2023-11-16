@@ -6,7 +6,7 @@
 
 #define PWMPER 40.0
 
-unsigned char acceleration = 20;
+unsigned char acceleration = 10;
 
 void InitPWM(void)
 {
@@ -71,14 +71,13 @@ void PWMSetSpeedConsigne(float vitesseEnPourcents,char moteur){
     if(moteur == MOTEUR_GAUCHE){    
         robotState.vitesseGaucheCommandeCourante = vitesseEnPourcents;
     }
-                    
-   
+
+    
     if(moteur == MOTEUR_DROIT){
         robotState.vitesseDroiteCommandeCourante = vitesseEnPourcents;
+    }
 
-}
-}
- 
+} 
 /*
 void PWMUpdateSpeed()
 {

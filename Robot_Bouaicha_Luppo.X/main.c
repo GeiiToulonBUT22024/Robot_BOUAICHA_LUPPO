@@ -12,9 +12,12 @@
 //Pour les include, on utilise < et >
 
 unsigned int * result;
-double captG;
-double captM;
-double captD;
+//double captG;
+//double captM;
+//double captD;
+float captG;
+float captM;
+float captD;
 unsigned char stateRobot;
 
 int main(void)
@@ -38,29 +41,40 @@ int main(void)
 
     /****************************************************************************************************/
     // Boucle Principale
-    /****************************************************************************************************/
+    /******************************************-+**********************************************************/
 
     while (1) {
         
 
         if (ADCIsConversionFinished()) {
-            ADCClearConversionFinishedFlag();
+           
             result = ADCGetResult();
             //pour 0V double var0 = result[0]*3.3/4096*3.2;
             //Pour 3.3Vdouble var1 = result[1]*3.3/4096*3.2;
             //val en tension: float captG = result[0]*3.3/4096*3.2;
             // val en analog float captG = result[0]*3.2;
 
-            captG = result[0]*3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreGauche = 34 / captG - 5;
+            //float captG = result[0]*3.3 / 4096 * 3.2;
+            //robotState.distanceTelemetreGauche = 34 / captG - 5;
 
 
-            captM = result[1]*3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreCentre = 34 / captM - 5;
+            //float captM = result[1]*3.3 / 4096 * 3.2;
+            //robotState.distanceTelemetreCentre = 34 / captM - 5;
 
-            captD = result[2]*3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreDroit = 34 / captD - 5;
-               
+            //float captD = result[2]*3.3 / 4096 * 3.2;
+            //robotState.distanceTelemetreDroit = 34 / captD - 5;
+            if (ADCIsConversionFinished() == 1)
+            {
+                ADCClearConversionFinishedFlag();
+                unsigned int * result = ADCGetResult();
+                float volts = ((float) result [2])* 3.3 / 4096 * 3.2;
+                robotState.distanceTelemetreDroit = 34 / volts - 5;
+                volts = ((float) result [1])* 3.3 / 4096 * 3.2;
+                robotState.distanceTelemetreCentre = 34 / volts - 5;
+                volts = ((float) result [0])* 3.3 / 4096 * 3.2;
+                robotState.distanceTelemetreGauche = 34 / volts - 5;
+            }
+            
             if (robotState.distanceTelemetreGauche > 30) {
                 LED_BLANCHE = 1;
             } else {
@@ -78,12 +92,11 @@ int main(void)
             } else {
                 LED_ORANGE = 0;
             }
-
+            ADCClearConversionFinishedFlag();
         }
-        //PWMSetSpeed(20,DROITE);
-        //tESTER SI LA CONVERSION EST FINIE
-
+        
     }
+    
 }//fin main
 
 void OperatingSystemLoop(void)
@@ -101,8 +114,8 @@ void OperatingSystemLoop(void)
             break;
 
         case STATE_AVANCE:
-            PWMSetSpeedConsigne(10, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(10, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);//10
+            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);//10
             stateRobot = STATE_AVANCE_EN_COURS;
             break;
         case STATE_AVANCE_EN_COURS:

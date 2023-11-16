@@ -32,7 +32,7 @@ void InitTimer4(void)
 {
     //Timer1 pour horodater les mesures (1ms)
     T4CONbits.TON = 0; // Disable Timer
-
+    SetFreqTimer4(freq4);
     //T4CONbits.TCKPS = 0b01 ; //Prescaler
     //11 = 1:256 prescale value
     //10 = 1:64 prescale value
@@ -43,7 +43,9 @@ void InitTimer4(void)
     IFS1bits.T4IF = 0; // Clear Timer Interrupt Flag
     IEC1bits.T4IE = 1; // Enable Timer interrupt
     T4CONbits.TON = 1; // Enable Timer
-    SetFreqTimer4(freq4);
+  
+
+    
 
 }
 

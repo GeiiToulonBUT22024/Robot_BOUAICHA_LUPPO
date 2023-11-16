@@ -4,6 +4,14 @@
 #include "main.h"
 #include "timer.h"
 #include "ChipConfig.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <xc.h>
+#include "ChipConfig.h"
+#include "IO.h"
+#include "timer.h"
+#include "PWM.h"
+#include "robot.h"
 unsigned char ADCResultIndex = 0;
 static unsigned int ADCResult[4];
 unsigned char ADCConversionFinishedFlag;
@@ -54,8 +62,6 @@ void InitADC1(void)
     AD1CSSLbits.CSS6 = 1; // Enable AN6 for scan
     AD1CSSLbits.CSS11 = 1; // Enable AN11 for scan
     AD1CSSHbits.CSS16 = 1; // Enable AN16 for scan
-
-
 
     /* Assign MUXA inputs */
     AD1CHS0bits.CH0SA = 0; // CH0SA bits ignored for CH0 +ve input selection
