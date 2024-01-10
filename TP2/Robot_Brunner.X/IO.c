@@ -32,17 +32,16 @@ void InitIO()
     
     // Configuration des entrées
     
-    // Config UART Rx: RPI34
-    _U1RXR = 24;
-    _RP36R = 0b00001;        
+
     // Configuration des pins remappables    
     //*************************************************************
-    // Unlock Registers
+    // Unlock Registers !!!!!!!!!!!!!
     //*************************************************************
     __builtin_write_OSCCONL(OSCCON & ~(1<<6)); 
-    
+     // Config UART Rx: RPI34
+    _U1RXR = 24;
+    _RP36R = 0b00001;        
     //Assignation des remappable pins
-    
     //*************************************************************
     // Lock Registers
     //*************************************************************

@@ -10,6 +10,10 @@
 #include "robot.h"
 #include "main.h"
 #include "UART.h"
+#include "CB_TX1.h"
+#include "CB_RX1.h"
+#include <libpic30.h>
+
 int rotation = 0;
 int rotation2 = 0;
 int reculer;
@@ -129,7 +133,6 @@ void SetNextRobotStateInAutomaticMode(void) {
 
 int main(void)
 {
-
     /***************************************************************************************************/
     //Initialisation de l?oscillateur
     /****************************************************************************************************/
@@ -139,8 +142,7 @@ int main(void)
     //Initialisation PWM
     /****************************************************************************************************/
     InitPWM();
-    InitUART();
-    
+
     /****************************************************************************************************/
     // Configuration des entrées sorties
     /****************************************************************************************************/
@@ -153,14 +155,26 @@ int main(void)
     InitTimer23();
     InitTimer4();
     InitADC1();
+    InitUART();
+    
 
     /****************************************************************************************************/
     // Boucle Principale
     /****************************************************************************************************/
     while (1) {
-        SendMessageDirect((unsigned char*) "Bonjour", 7);
-        _delay32(40000000);
-
+        unsigned char payload[] = {'B', 'o', 'n', 'j', 'o', 'u', 'r'};
+        UartEncodeAndSendMessage(0x0080,7, payload);
+      /*  int i;
+        for(i=0; i< CB_RX1_GetDataSize(); i++)
+        {
+            unsigned char c = CB_RX1_Get();
+            SendMessage(&c,1);
+        }
+       */
+        __delay32(40000000);
+     /* SendMessage("Bonjour\r\n",11);
+    __delay32(10000);*/
+        
         
         if (ADCIsConversionFinished()) 
         {
@@ -206,7 +220,7 @@ int main(void)
                 robotState.distanceTelemetreExtremeGauche=30;
             }
   */          
-            PWMSetSpeedConsigne(vitessebase, MOTEUR_DROIT);
+            /*PWMSetSpeedConsigne(vitessebase, MOTEUR_DROIT);
             PWMSetSpeedConsigne(vitessebase, MOTEUR_GAUCHE);
 
             if (coef1<0.7||robotState.distanceTelemetreExtremeGauche<15)
@@ -264,7 +278,7 @@ int main(void)
                 PWMSetSpeedConsigne(0, MOTEUR_DROIT);
                 PWMSetSpeedConsigne(vitessebase*0.5, MOTEUR_GAUCHE);  
             }
-            ADCClearConversionFinishedFlag();
+            ADCClearConversionFinishedFlag();*/
         }     
     }
 }
