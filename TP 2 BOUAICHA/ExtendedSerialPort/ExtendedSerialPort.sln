@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathiasLUPPO_MostefaBOUAICHA", "MathiasLUPPO_MostefaBOUAICHA.csproj", "{0BE032F0-F18C-44D7-A15B-E0D14676662D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\ExtendedSerialPort\ExtendedSerialPort.csproj", "{21AC599E-E3D5-4181-AA0F-7C2E00CCA016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "ExtendedSerialPort.csproj", "{21AC599E-E3D5-4181-AA0F-7C2E00CCA016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,14 +13,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Debug|x64.Build.0 = Debug|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Release|x64.ActiveCfg = Release|Any CPU
-		{0BE032F0-F18C-44D7-A15B-E0D14676662D}.Release|x64.Build.0 = Release|Any CPU
 		{21AC599E-E3D5-4181-AA0F-7C2E00CCA016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21AC599E-E3D5-4181-AA0F-7C2E00CCA016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21AC599E-E3D5-4181-AA0F-7C2E00CCA016}.Debug|x64.ActiveCfg = Debug|x64
@@ -36,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3F9C5C68-5DA6-4E0B-9ACB-AC8F8D1CEB09}
+		SolutionGuid = {1D183113-B14F-41E8-B05E-22423767F8BF}
 	EndGlobalSection
 EndGlobal

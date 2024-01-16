@@ -162,38 +162,62 @@ int main(void)
     // Boucle Principale
     /****************************************************************************************************/
     while (1) {
-        unsigned char payload[] = {'B', 'o', 'n', 'j', 'o', 'u', 'r'};
-        UartEncodeAndSendMessage(0x0080,7, payload);
-      /*  int i;
+        
+      /*  unsigned char payload[] = {'B', 'o', 'n', 'j', 'o', 'u', 'r'};
+        
+        int i;
         for(i=0; i< CB_RX1_GetDataSize(); i++)
         {
             unsigned char c = CB_RX1_Get();
             SendMessage(&c,1);
         }
+       __delay32(40000000);
        */
-        __delay32(40000000);
+       
      /* SendMessage("Bonjour\r\n",11);
     __delay32(10000);*/
         
         
         if (ADCIsConversionFinished()) 
         {
+            
             unsigned int * result = ADCGetResult();
 
             captED = ((float) result [0]+1)* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreExtremeDroit = 34.0 / captED - 5;
+
             
+            //Capteur Droite
             captD = ((float) result [1])* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreDroit = 34.0 / captD - 5;
-
+            if (robotState.distanceTelemetreDroit>=256){
+            robotState.distanceTelemetreDroit=255;
+            }
+            unsigned char D = robotState.distanceTelemetreDroit;
+            UartEncodeAndSendMessage(0x0030,1,0x08);
+            
+            //Capteur Centre
             captM = ((float) result [2])* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreCentre = 34.0 / captM - 5;
+            if (robotState.distanceTelemetreCentre>=256){
+            robotState.distanceTelemetreCentre=255;
+            }
+            unsigned char M = robotState.distanceTelemetreCentre;
+            UartEncodeAndSendMessage(0x0031,1, M);
             
+            //Capteur Gauche
             captG = ((float) result [3])* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreGauche = 34.0 / captG - 5;
+            if (robotState.distanceTelemetreGauche>=256){
+            robotState.distanceTelemetreGauche=255;
+            }
+            unsigned char G = robotState.distanceTelemetreGauche;
+            UartEncodeAndSendMessage(0x0032,1, G);
+            
 
             captEG = ((float) result [4])* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreExtremeGauche = 34.0 / captEG - 5;
+            //UartEncodeAndSendMessage(0x0030,7, payload);
 
           
             // Strat 

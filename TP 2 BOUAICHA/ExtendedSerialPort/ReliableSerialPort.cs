@@ -35,10 +35,11 @@ namespace ExtendedSerialPort
                 //Le Thread est infini mais il sera suspendu quand le port série sera trouvé et ouvert
                 while (true)
                 {
-                    if (!base.IsOpen)
+                    string PortNameFound = PortName;//SearchPortName(PortType); 
+                    if (!string.IsNullOrWhiteSpace(PortNameFound))
                     {
-                        string PortNameFound = PortName;//SearchPortName(PortType); 
-                        if (!string.IsNullOrWhiteSpace(PortNameFound))
+
+                        if (!base.IsOpen)
                         {
                             //Si on trouve un port série de type voulu
                             base.PortName = PortNameFound;

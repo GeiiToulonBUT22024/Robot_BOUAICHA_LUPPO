@@ -242,6 +242,7 @@ namespace MathiasLUPPO_MostefaBOUAICHA
                     else
                     {
                         textBox_Reception.Text += "Error 404";
+                        rcvState = StateReception.Waiting;
                     }
                     break;
                 default:
@@ -260,52 +261,44 @@ namespace MathiasLUPPO_MostefaBOUAICHA
             vitesse
 
         }
-        Description etat = Description.rien;
+       
 
         public void ProcessDecodedMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
-            switch (etat)
+
+            switch (msgFunction)
             {
-                case Description.rien:
-                    if (msgFunction == 0x0080)
-                    {
-                        etat = Description.Transmission;
-                    }
-                    if (msgFunction == 0x0020)
-                    {
-                        etat = Description.Led;
-                    }
-                    if (msgFunction == 0x0030)
-                    {
-                        etat = Description.IR;
-                    }
-                    if (msgFunction == 0x0040)
-                    {
-                        etat = Description.vitesse;
-                    }
-                    break;
-
-                case Description.Transmission:
+                  case 0x0080://Description Transmission
                     textBox_Reception.Text = msgPayload.ToString();
-                    etat = Description.rien;
+                    //etat = Description.rien;
 
                     break;
-                case Description.Led:
+                case 0x0020://Description LED
                     int numled = msgPayload[0];
                     int stateled = msgPayload[1];
-                    etat = Description.rien;
+                    //etat = Description.rien;
                     break;
-                case Description.IR:
-                    int telemetreD = msgPayload[0];
-                    int telemetreC = msgPayload[1];
-                    int telemetreG = msgPayload[2];
-                    etat = Description.rien;
+                case 0x0030://Description telemetre IR Droite 
+                    int telemetreD = (int)msgPayload[0];
+                    LabelirD.Content = telemetreD.ToString();
+
+                    //etat = Description.rien;
                     break;
-                case Description.vitesse:
+                case 0x0031://Description telemetre IR Centre
+                    int telemetreC = msgPayload[0];
+                    LabelirC.Content = telemetreC.ToString();
+                    //etat = Description.rien;
+                    break;
+                case 0x0032://Description telemetre IR Gauche
+                    int telemetreG = msgPayload[0];
+                    LabelirG.Content = telemetreG.ToString();
+                    //etat = Description.rien;
+                    break;
+                case 0x0040://Description Vitesse
 
                     int vitesseD = msgPayload[1];
                     int vitesseG = msgPayload[0];
-                    etat = Description.rien;
+                    //etat = Description.rien;
                     break;
             }
 
