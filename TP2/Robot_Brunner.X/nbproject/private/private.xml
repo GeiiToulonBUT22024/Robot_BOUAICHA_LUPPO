@@ -7,6 +7,8 @@
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/timer.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART_Protocol.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/IO.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/robot.c</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/timer.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/CB_RX1.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/PWM.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/CB_TX1.c</file>
@@ -14,6 +16,7 @@
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/CB_RX1.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART.h</file>
+            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/ToolBox.c</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/CB_TX1.h</file>
             <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART_Protocol.h</file>
         </group>

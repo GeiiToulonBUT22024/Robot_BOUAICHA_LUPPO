@@ -32,19 +32,19 @@ void UartEncodeAndSendMessage(int msgFunction, int msgPayloadLength, unsigned ch
         tableau[pos++] = msgPayload[i];
     }
     tableau[pos++] = UartCalculateChecksum(msgFunction,msgPayloadLength,msgPayload);
-    unsigned char debug1=tableau[0];
-    unsigned char debug2=tableau[1];
-    unsigned char debug3=tableau[2];
-    unsigned char debug4=tableau[3];
-    unsigned char debug5=tableau[4];
-    unsigned char debug6=tableau[5];
-    unsigned char debug7=tableau[6];
-    unsigned char debug8=tableau[7];
-    unsigned char debug9=tableau[8];
-    unsigned char debug10=tableau[9];
-    unsigned char debug11=tableau[10];
-    unsigned char debug12=tableau[11];
-    unsigned char debug13=tableau[12];
+//    unsigned char debug1=tableau[0];
+//    unsigned char debug2=tableau[1];
+//    unsigned char debug3=tableau[2];
+//    unsigned char debug4=tableau[3];
+//    unsigned char debug5=tableau[4];
+//    unsigned char debug6=tableau[5];
+//    unsigned char debug7=tableau[6];
+//    unsigned char debug8=tableau[7];
+//    unsigned char debug9=tableau[8];
+//    unsigned char debug10=tableau[9];
+//    unsigned char debug11=tableau[10];
+//    unsigned char debug12=tableau[11];
+//    unsigned char debug13=tableau[12];
     
     SendMessage(tableau, pos);
 }

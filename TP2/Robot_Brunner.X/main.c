@@ -194,7 +194,9 @@ int main(void)
             robotState.distanceTelemetreDroit=255;
             }
             unsigned char D = robotState.distanceTelemetreDroit;
-            UartEncodeAndSendMessage(0x0030,1,0x08);
+            unsigned char* test[1];
+            test[0] = 0x08;
+            UartEncodeAndSendMessage(0x0030,1, test);
             
             //Capteur Centre
             captM = ((float) result [2])* 3.3 / 4096 * 3.2;
