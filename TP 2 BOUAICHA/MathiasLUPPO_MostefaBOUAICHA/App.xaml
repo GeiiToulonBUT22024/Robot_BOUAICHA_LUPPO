@@ -1,0 +1,9 @@
+﻿<Application x:Class="MathiasLUPPO_MostefaBOUAICHA.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MathiasLUPPO_MostefaBOUAICHA"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
