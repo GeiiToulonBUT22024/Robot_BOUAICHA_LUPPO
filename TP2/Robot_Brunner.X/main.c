@@ -205,7 +205,8 @@ int main(void)
             robotState.distanceTelemetreCentre=255;
             }
             unsigned char M = robotState.distanceTelemetreCentre;
-            UartEncodeAndSendMessage(0x0031,1, M);
+            UartEncodeAndSendMessage(0x0031,3,M);
+
             
             //Capteur Gauche
             captG = ((float) result [3])* 3.3 / 4096 * 3.2;
@@ -214,7 +215,7 @@ int main(void)
             robotState.distanceTelemetreGauche=255;
             }
             unsigned char G = robotState.distanceTelemetreGauche;
-            UartEncodeAndSendMessage(0x0032,1, G);
+            UartEncodeAndSendMessage(0x0032,3,G);
             
 
             captEG = ((float) result [4])* 3.3 / 4096 * 3.2;
