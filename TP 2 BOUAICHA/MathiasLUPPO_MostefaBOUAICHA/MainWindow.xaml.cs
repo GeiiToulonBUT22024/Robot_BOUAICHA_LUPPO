@@ -24,7 +24,7 @@ namespace MathiasLUPPO_MostefaBOUAICHA
         public MainWindow()
         {
             InitializeComponent();
-            serialPort1 = new ReliableSerialPort("COM12", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ReliableSerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
             serialPort1.OnDataReceivedEvent += SerialPort1_DataReceived;
             serialPort1.Open();
             timerAffichage = new DispatcherTimer();
