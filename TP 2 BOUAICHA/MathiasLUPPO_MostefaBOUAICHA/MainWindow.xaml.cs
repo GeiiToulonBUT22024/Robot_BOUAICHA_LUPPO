@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ExtendedSerialPort;
 using System.Windows.Threading;
-
+using System.Security.RightsManagement;
 
 namespace MathiasLUPPO_MostefaBOUAICHA
 {
@@ -24,7 +24,7 @@ namespace MathiasLUPPO_MostefaBOUAICHA
         public MainWindow()
         {
             InitializeComponent();
-            serialPort1 = new ReliableSerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ReliableSerialPort("COM21", 115200, Parity.None, 8, StopBits.One);
             serialPort1.OnDataReceivedEvent += SerialPort1_DataReceived;
             serialPort1.Open();
             timerAffichage = new DispatcherTimer();
@@ -305,9 +305,11 @@ namespace MathiasLUPPO_MostefaBOUAICHA
 
         }
 
-
-
-
-
+        public void isCheckedLed1(object sender, RoutedEventArgs e)
+        {
+            byte[] Checked =new byte[1];
+            Checked[0] = 0x04;
+            UartEncodeAndSendMessage(0x0040, 1, Checked);
+        }
     }
 }

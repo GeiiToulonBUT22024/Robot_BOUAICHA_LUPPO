@@ -197,7 +197,7 @@ int main(void)
             unsigned char* test[1];
             test[0] = 0x08;
             UartEncodeAndSendMessage(0x0030,1, test);
-            
+            __delay32(1000);
             //Capteur Centre
             captM = ((float) result [2])* 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreCentre = 34.0 / captM - 5;
@@ -206,7 +206,7 @@ int main(void)
             }
             unsigned char M = robotState.distanceTelemetreCentre;
             UartEncodeAndSendMessage(0x0031,3,M);
-
+            __delay32(1000);
             
             //Capteur Gauche
             captG = ((float) result [3])* 3.3 / 4096 * 3.2;
@@ -216,6 +216,7 @@ int main(void)
             }
             unsigned char G = robotState.distanceTelemetreGauche;
             UartEncodeAndSendMessage(0x0032,3,G);
+            __delay32(1000);
             
 
             captEG = ((float) result [4])* 3.3 / 4096 * 3.2;
@@ -306,7 +307,14 @@ int main(void)
                 PWMSetSpeedConsigne(vitessebase*0.5, MOTEUR_GAUCHE);  
             }
             ADCClearConversionFinishedFlag();*/
-        }     
+        }
+        int i;
+        for(i=0; i< CB_RX1_GetDataSize(); i++)
+        {
+        unsigned char c = CB_RX1_Get();
+        SendMessage(&c,1);
+        }
+        __delay32(10000);
     }
 }
 

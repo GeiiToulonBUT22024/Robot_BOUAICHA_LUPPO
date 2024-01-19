@@ -31,7 +31,7 @@
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal">
             <GroupBox x:Name="Leds" Grid.Column="0" Grid.Row="1" Header="Leds&#xA;" BorderBrush="Black" Foreground="Black" Background="#FFABE0E0" >
                 <StackPanel  Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Width="80" Grid.Row="1" >
-                    <CheckBox x:Name="Led1CheckBox" Content="Led1" Margin="0,5" IsChecked="False"/>
+                    <CheckBox x:Name="Led1CheckBox" Content="Led1" Margin="0,5" IsChecked="False" Checked="isCheckedLed1"/>
                     <CheckBox Content="Led2" Margin="0,5"/>
                     <CheckBox Content="Led3" Margin="0,5"/>
                 </StackPanel>

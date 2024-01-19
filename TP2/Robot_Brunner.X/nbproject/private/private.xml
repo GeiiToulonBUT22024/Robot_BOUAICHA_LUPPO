@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/main.c</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/CB_TX1.c</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART_Protocol.c</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART.c</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/UART.h</file>
-            <file>file:/C:/GitHub/Robot_BOUAICHA_LUPPO/TP2/Robot_Brunner.X/ADC.c</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
