@@ -12,19 +12,36 @@ unsigned long timestamp = 0;
 void InitTimer1(void) {
     //Timer1 pour horodater les mesures (1ms)
     T1CONbits.TON = 0; // Disable Timer
-    T1CONbits.TCKPS = 0b01; //Prescaler
+    
+    //T1CONbits.TCKPS = 0b01; //Prescaler
     //11 = 1:256 prescale value
     //10 = 1:64 prescale value
     //01 = 1:8 prescale value
     //00 = 1:1 prescale value
     T1CONbits.TCS = 0; //clock source = internal clock
-    PR1 = 0x1D4C;
+    //PR1 = 0x1D4C;
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
+    SetFreqTimer1(250.0);
 }
 
-
+void InitTimer4(void) {
+    //Timer1 pour horodater les mesures (1ms)
+    T4CONbits.TON = 0; // Disable Timer
+    
+    //T1CONbits.TCKPS = 0b01; //Prescaler
+    //11 = 1:256 prescale value
+    //10 = 1:64 prescale value
+    //01 = 1:8 prescale value
+    //00 = 1:1 prescale value
+    T4CONbits.TCS = 0; //clock source = internal clock
+    //PR1 = 0x1D4C;
+    IFS1bits.T4IF = 0; // Clear Timer Interrupt Flag
+    IEC1bits.T4IE = 1; // Enable Timer interrupt
+    T4CONbits.TON = 1; // Enable Timer
+    SetFreqTimer4(1000.0);
+}
 //Interruption du timer 1
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     
@@ -32,7 +49,12 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     ADC1StartConversionSequence();
 }
-
+void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
+    
+    IFS1bits.T4IF = 0;
+    //LED_BLANCHE_1 = !LED_BLANCHE_1;
+    timestamp++;
+}
 
 
 //Initialisation d?un timer 32 bits

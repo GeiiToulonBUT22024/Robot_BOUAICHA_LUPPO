@@ -37,6 +37,7 @@ int main(void) {
     InitPWM();
     PWMSetSpeed(20.0);
     InitTimer1();
+    InitTimer4();
 
 
 
