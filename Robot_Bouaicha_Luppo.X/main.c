@@ -35,7 +35,7 @@ int main(void) {
     InitADC1();
     InitTimer23();
     InitPWM();
-    PWMSetSpeed(20.0);
+    PWMSetSpeed(5.0);
     InitTimer1();
     InitTimer4();
 
@@ -97,7 +97,7 @@ int main(void) {
 
 //fin main
 
-/*void OperatingSystemLoop(void)
+void OperatingSystemLoop(void)
 {
     switch (stateRobot) {
         case STATE_ATTENTE:
@@ -168,19 +168,19 @@ void SetNextRobotStateInAutomaticMode()
     unsigned char positionObstacle = PAS_D_OBSTACLE;
 
     //Détermination de la position des obstacles en fonction des télémètres
-    if (robotState.distanceTelemetreDroit < 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche > 30) //Obstacle à droite
+    if (robotState.captD < 30 &&
+            robotState.captM > 20 &&
+            robotState.captG > 30) //Obstacle à droite
         positionObstacle = OBSTACLE_A_DROITE;
-    else if (robotState.distanceTelemetreDroit > 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche < 30) //Obstacle à gauche
+    else if (robotState.captD > 30 &&
+            robotState.captM > 20 &&
+            robotState.captG < 30) //Obstacle à gauche
         positionObstacle = OBSTACLE_A_GAUCHE;
-    else if (robotState.distanceTelemetreCentre < 20) //Obstacle en face
+    else if (robotState.captM < 20) //Obstacle en face
         positionObstacle = OBSTACLE_EN_FACE;
-    else if (robotState.distanceTelemetreDroit > 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche > 30) //pas d?obstacle
+    else if (robotState.captD > 30 &&
+            robotState.captM > 20 &&
+            robotState.captG > 30) //pas d?obstacle
         positionObstacle = PAS_D_OBSTACLE;
 
     //Détermination de l?état à venir du robot
@@ -197,4 +197,4 @@ void SetNextRobotStateInAutomaticMode()
     if (nextStateRobot != stateRobot - 1) {
         stateRobot = nextStateRobot;
     }
-}*/
+}

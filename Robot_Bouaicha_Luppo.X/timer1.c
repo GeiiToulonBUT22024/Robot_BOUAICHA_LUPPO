@@ -53,7 +53,9 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     
     IFS1bits.T4IF = 0;
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
+    OperatingSystemLoop();
     timestamp++;
+    
 }
 
 
@@ -82,7 +84,6 @@ void InitTimer23(void) {
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
 IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 //LED_ORANGE_1 = !LED_ORANGE_1;
-
 }
 
 

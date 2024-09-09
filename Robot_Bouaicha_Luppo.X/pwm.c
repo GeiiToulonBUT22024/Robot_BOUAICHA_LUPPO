@@ -26,6 +26,9 @@ void PWMSetSpeed(float vitesseEnPourcents)
 {
     PDC1 = vitesseEnPourcents * PWMPER + talon;
     SDC1 = talon;
+    
+    PDC2 = vitesseEnPourcents * PWMPER + talon;
+    SDC2 = talon;
 }
 
 void PWMUpdateSpeed() {
@@ -60,4 +63,16 @@ void PWMUpdateSpeed() {
         PDC2 = talon;
         SDC2 = -robotState.vitesseGaucheCommandeCourante * PWMPER + talon;
     }
+}
+void PWMSetSpeedConsigne(float vitesseEnPourcents,char moteur)
+{
+        if(moteur == MOTEUR_GAUCHE){    
+        robotState.vitesseGaucheCommandeCourante = vitesseEnPourcents;
+    }
+                    
+   
+    if(moteur == MOTEUR_DROIT){
+        robotState.vitesseDroiteCommandeCourante = vitesseEnPourcents;
+
+}   
 }
