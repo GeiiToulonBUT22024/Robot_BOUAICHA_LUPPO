@@ -4,7 +4,7 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
-#include "PWM.h"
+#include "pwm.h"
 #include "ADC.h"
 #include "robot.h"
 #include "main.h"
@@ -12,16 +12,12 @@
 //Pour les include, on utilise < et >
 
 unsigned int * result;
-//double captG;
-//double captM;
-//double captD;
 float captG;
 float captM;
 float captD;
 unsigned char stateRobot;
 
-int main(void)
-{
+int main(void) {
 
     /***************************************************************************************************/
     //Initialisation de l?oscillateur
@@ -31,12 +27,17 @@ int main(void)
     // Configuration des entrées sorties
     /****************************************************************************************************/
     InitIO();
-    //InitTimer23();
-    InitPWM();
-
-    InitTimer1();
+    LED_BLANCHE_1 = 0;
+    LED_BLEUE_1 = 0;
+    LED_ORANGE_1 = 0;
+    LED_ROUGE_1 = 0;
+    LED_VERTE_1 = 0;
     InitADC1();
-    InitTimer4();
+    InitTimer23();
+    InitPWM();
+    PWMSetSpeed(20.0);
+    InitTimer1();
+
 
 
     /****************************************************************************************************/
@@ -44,62 +45,58 @@ int main(void)
     /******************************************-+**********************************************************/
 
     while (1) {
-        
 
-        if (ADCIsConversionFinished()) {
-           
-            result = ADCGetResult();
-            //pour 0V double var0 = result[0]*3.3/4096*3.2;
-            //Pour 3.3Vdouble var1 = result[1]*3.3/4096*3.2;
-            //val en tension: float captG = result[0]*3.3/4096*3.2;
-            // val en analog float captG = result[0]*3.2;
+        if (ADCIsConversionFinished() == 1) {
+            ADCClearConversionFinishedFlag();
+            unsigned int * result = ADCGetResult();
+            float volts = ((float) result [4])* 3.3 / 4096;
+            robotState.captExtD = 34 / volts - 5;
+            volts = ((float) result [3])* 3.3 / 4096;
+            robotState.captD = 34 / volts - 5;
+            volts = ((float) result [2])* 3.3 / 4096;
+            robotState.captM = 34 / volts - 5;
+            volts = ((float) result [1])* 3.3 / 4096;
+            robotState.captG = 34 / volts - 5;
+            volts = ((float) result [0])* 3.3 / 4096;
+            robotState.captExtG = 34 / volts - 5;
 
-            //float captG = result[0]*3.3 / 4096 * 3.2;
-            //robotState.distanceTelemetreGauche = 34 / captG - 5;
 
-
-            //float captM = result[1]*3.3 / 4096 * 3.2;
-            //robotState.distanceTelemetreCentre = 34 / captM - 5;
-
-            //float captD = result[2]*3.3 / 4096 * 3.2;
-            //robotState.distanceTelemetreDroit = 34 / captD - 5;
-            if (ADCIsConversionFinished() == 1)
-            {
-                ADCClearConversionFinishedFlag();
-                unsigned int * result = ADCGetResult();
-                float volts = ((float) result [2])* 3.3 / 4096 * 3.2;
-                robotState.distanceTelemetreDroit = 34 / volts - 5;
-                volts = ((float) result [1])* 3.3 / 4096 * 3.2;
-                robotState.distanceTelemetreCentre = 34 / volts - 5;
-                volts = ((float) result [0])* 3.3 / 4096 * 3.2;
-                robotState.distanceTelemetreGauche = 34 / volts - 5;
-            }
+            if (robotState.captExtG < 30) 
+                LED_BLANCHE_1 = 1;
+            else 
+                LED_BLANCHE_1 = 0;
             
-            if (robotState.distanceTelemetreGauche > 30) {
-                LED_BLANCHE = 1;
+            if (robotState.captG < 30) 
+                LED_BLEUE_1 = 1;
+            else 
+                LED_BLEUE_1 = 0;
+            
+            if (robotState.captM < 30) 
+                LED_ORANGE_1 = 1;
+            else 
+                LED_ORANGE_1 = 0;
+            
+            // PWMUpdateSpeed();
+            if (robotState.captD < 30) {
+                LED_ROUGE_1 = 1;
             } else {
-                LED_BLANCHE = 0;
-            }
-
-            if (robotState.distanceTelemetreCentre > 30) {
-                LED_BLEUE = 1;
-            } else {
-                LED_BLEUE = 0;
+                LED_ROUGE_1 = 0;
             }
             // PWMUpdateSpeed();
-            if (robotState.distanceTelemetreDroit > 30) {
-                LED_ORANGE = 1;
+            if (robotState.captExtD < 30) {
+                LED_VERTE_1 = 1;
             } else {
-                LED_ORANGE = 0;
+                LED_VERTE_1 = 0;
             }
-            ADCClearConversionFinishedFlag();
         }
-        
-    }
-    
-}//fin main
 
-void OperatingSystemLoop(void)
+        ADCClearConversionFinishedFlag();
+    }
+}
+
+//fin main
+
+/*void OperatingSystemLoop(void)
 {
     switch (stateRobot) {
         case STATE_ATTENTE:
@@ -199,4 +196,4 @@ void SetNextRobotStateInAutomaticMode()
     if (nextStateRobot != stateRobot - 1) {
         stateRobot = nextStateRobot;
     }
-}
+}*/
