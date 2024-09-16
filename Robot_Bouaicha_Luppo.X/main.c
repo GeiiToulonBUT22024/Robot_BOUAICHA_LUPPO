@@ -89,6 +89,10 @@ int main(void) {
             }
         }
         ADCClearConversionFinishedFlag();
+                int i;
+        for (i = 0; i < CB_RX1_GetDataSize(); i++) {
+            unsigned char c = CB_RX1_Get();
+            UartDecodeMessage(c);
         //PWMSetSpeedConsigne(15.0,MOTEUR_DROIT);
     }
 }
