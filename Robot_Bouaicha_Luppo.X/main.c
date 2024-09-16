@@ -110,8 +110,8 @@ void OperatingSystemLoop(void)
             break;
 
         case STATE_AVANCE:
-            PWMSetSpeedConsigne(10.0, MOTEUR_DROIT);//10
-            PWMSetSpeedConsigne(10.0, MOTEUR_GAUCHE);//10
+            PWMSetSpeedConsigne(-10.0, MOTEUR_DROIT);//10
+            PWMSetSpeedConsigne(-10.0, MOTEUR_GAUCHE);//10
             stateRobot = STATE_AVANCE_EN_COURS;
             break;
         case STATE_AVANCE_EN_COURS:
@@ -119,26 +119,40 @@ void OperatingSystemLoop(void)
             break;
 
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(30.0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-30.0, MOTEUR_DROIT);
             PWMSetSpeedConsigne(0.0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
             break;
         case STATE_TOURNE_GAUCHE_EN_COURS:
             SetNextRobotStateInAutomaticMode();
             break;
-
+        case STATE_TOURNE_FGAUCHE:
+            PWMSetSpeedConsigne(-15.0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-5.0, MOTEUR_GAUCHE);
+            stateRobot = STATE_TOURNE_FGAUCHE_EN_COURS;
+            break;
+        case STATE_TOURNE_FGAUCHE_EN_COURS:
+            SetNextRobotStateInAutomaticMode();
+            break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0.0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30.0, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-30.0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
             SetNextRobotStateInAutomaticMode();
             break;
-
-        case STATE_TOURNE_SUR_PLACE_GAUCHE:
-            PWMSetSpeedConsigne(15.0, MOTEUR_DROIT);
+        case STATE_TOURNE_FDROITE:
+            PWMSetSpeedConsigne(-5.0, MOTEUR_DROIT);
             PWMSetSpeedConsigne(-15.0, MOTEUR_GAUCHE);
+            stateRobot = STATE_TOURNE_FDROITE_EN_COURS;
+            break;
+        case STATE_TOURNE_FDROITE_EN_COURS:
+            SetNextRobotStateInAutomaticMode();
+            break;
+        case STATE_TOURNE_SUR_PLACE_GAUCHE:
+            PWMSetSpeedConsigne(-15.0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(15.0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS:
@@ -146,8 +160,8 @@ void OperatingSystemLoop(void)
             break;
 
         case STATE_TOURNE_SUR_PLACE_DROITE:
-            PWMSetSpeedConsigne(-15.0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15.0, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(15.0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-15.0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS:
@@ -166,19 +180,27 @@ void SetNextRobotStateInAutomaticMode()
     unsigned char positionObstacle = PAS_D_OBSTACLE;
 
     //Détermination de la position des obstacles en fonction des télémètres
-    if (robotState.captD < 30.0 &&
+    if (robotState.captExtD > 30.0 && robotState.captD < 30.0 &&
             robotState.captM > 20.0 &&
-            robotState.captG > 30.0) //Obstacle à droite
+            robotState.captG > 30.0 && robotState.captExtG > 30.0) //Obstacle à droite
         positionObstacle = OBSTACLE_A_DROITE;
-    else if (robotState.captD > 30 &&
+    else if (robotState.captExtD < 30.0 &&
+            robotState.captD > 20.0 &&
+            robotState.captG > 30.0 && robotState.captExtG > 30.0) //Obstacle à extdroite
+        positionObstacle = OBSTACLE_A_EXTDROITE;
+    else if (robotState.captExtD > 30.0 && robotState.captD > 30.0 &&
             robotState.captM > 20 &&
-            robotState.captG < 30) //Obstacle à gauche
+            robotState.captG > 30 && robotState.captExtG < 30) //Obstacle à extgauche
+        positionObstacle = OBSTACLE_A_EXTGAUCHE;
+    else if (robotState.captExtD > 30.0 && robotState.captD > 30 &&
+            robotState.captM > 20 &&
+            robotState.captG < 30 && robotState.captExtG > 30) //Obstacle à gauche
         positionObstacle = OBSTACLE_A_GAUCHE;
     else if (robotState.captM < 20) //Obstacle en face
         positionObstacle = OBSTACLE_EN_FACE;
-    else if (robotState.captD > 30 &&
-            robotState.captM > 20 &&
-            robotState.captG > 30) //pas d?obstacle
+    else if (robotState.captExtD > 30.0 && robotState.captD > 30 &&
+            robotState.captM > 20 && 
+            robotState.captG > 30 && robotState.captExtG > 3) //pas d?obstacle
         positionObstacle = PAS_D_OBSTACLE;
 
     //Détermination de l?état à venir du robot
@@ -186,8 +208,12 @@ void SetNextRobotStateInAutomaticMode()
         nextStateRobot = STATE_AVANCE;
     else if (positionObstacle == OBSTACLE_A_DROITE)
         nextStateRobot = STATE_TOURNE_GAUCHE;
+    else if (positionObstacle == OBSTACLE_A_EXTDROITE)
+        nextStateRobot = STATE_TOURNE_FGAUCHE;
     else if (positionObstacle == OBSTACLE_A_GAUCHE)
         nextStateRobot = STATE_TOURNE_DROITE;
+    else if (positionObstacle == OBSTACLE_A_EXTGAUCHE)
+        nextStateRobot = STATE_TOURNE_FDROITE;
     else if (positionObstacle == OBSTACLE_EN_FACE)
         nextStateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE;
 
