@@ -48,12 +48,17 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     ADC1StartConversionSequence();
+    OperatingSystemLoop();
+    SetNextRobotStateInAutomaticMode();
+    //PWMSetSpeedConsigne();
+    PWMUpdateSpeed();
 }
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     
     IFS1bits.T4IF = 0;
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
-    OperatingSystemLoop();
+    //OperatingSystemLoop();
+    //SetNextRobotStateInAutomaticMode();
     timestamp++;
     
 }

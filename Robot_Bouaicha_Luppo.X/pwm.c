@@ -21,15 +21,16 @@ void InitPWM(void) {
     /* Enable PWM Module */
     PTCONbits.PTEN = 1;
 }
+
 double talon = 20;
-void PWMSetSpeed(float vitesseEnPourcents)
+/*void PWMSetSpeed(float vitesseEnPourcents)
 {
     PDC1 = vitesseEnPourcents * PWMPER + talon;
     SDC1 = talon;
     
     PDC2 = vitesseEnPourcents * PWMPER + talon;
     SDC2 = talon;
-}
+}*/
 
 void PWMUpdateSpeed() {
     // Cette fonction est appelee sur timer et permet de suivre des rampes d acceleration
@@ -67,12 +68,12 @@ void PWMUpdateSpeed() {
 void PWMSetSpeedConsigne(float vitesseEnPourcents,char moteur)
 {
         if(moteur == MOTEUR_GAUCHE){    
-        robotState.vitesseGaucheCommandeCourante = vitesseEnPourcents;
+        robotState.vitesseGaucheConsigne = vitesseEnPourcents;
     }
                     
    
     if(moteur == MOTEUR_DROIT){
-        robotState.vitesseDroiteCommandeCourante = vitesseEnPourcents;
+        robotState.vitesseDroiteConsigne = vitesseEnPourcents;
 
 }   
 }
