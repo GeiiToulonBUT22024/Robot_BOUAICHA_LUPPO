@@ -15,6 +15,8 @@
       <itemPath>UART.h</itemPath>
       <itemPath>CB_RX1.h</itemPath>
       <itemPath>CB_TX1.h</itemPath>
+      <itemPath>asservissement.h</itemPath>
+      <itemPath>UART_Protocol.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -34,6 +36,7 @@
       <itemPath>UART.c</itemPath>
       <itemPath>CB_RX1.c</itemPath>
       <itemPath>CB_TX1.c</itemPath>
+      <itemPath>UART_Protocol.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -452,6 +455,8 @@
                   value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value="3.25"/>
       </Tool>
+      <item path="asservissement.h" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>
