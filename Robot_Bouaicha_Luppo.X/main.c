@@ -8,7 +8,10 @@
 #include "ADC.h"
 #include "robot.h"
 #include "main.h"
-
+#include "UART.h"
+#include "UART_Protocol.h"
+#include "CB_TX1.h"
+#include "CB_RX1.h"
 //Pour les include, on utilise < et >
 
 unsigned int * result;
@@ -16,7 +19,11 @@ float captG;
 float captM;
 float captD;
 unsigned char stateRobot;
-
+unsigned char tabIR[5];
+unsigned char tabVitesse[2];
+float vitessed = 25;
+float vitesseg = 25;
+int cpt = 0;
 int main(void) {
 
     /***************************************************************************************************/
@@ -58,7 +65,12 @@ int main(void) {
             robotState.captG = 34 / volts - 5;
             volts = ((float) result [0])* 3.3 / 4096;
             robotState.captExtG = 34 / volts - 5;
-        
+            UartEncodeAndSendMessage(0x0030, 5, (unsigned char*) tabIR);
+
+            tabVitesse[0] = vitesseg;
+            UartEncodeAndSendMessage(0x0040, 2, (unsigned char*) tabVitesse);
+            tabVitesse[1] = vitessed;
+            UartEncodeAndSendMessage(0x0040, 2, (unsigned char*) tabVitesse);
 
             if (robotState.captExtG < 30) 
                 LED_BLANCHE_1 = 1;
@@ -89,9 +101,19 @@ int main(void) {
             }
         }
         ADCClearConversionFinishedFlag();
+        /*int i;
+        for (i = 0; i < CB_RX1_GetDataSize(); i++) {
+            unsigned char c = CB_RX1_Get();
+            UartDecodeMessage(c);
+            //                    SendMessage(&c, 1);
+        }
+        __delay32(10000);
+        //PWMSetSpeedConsigne(15.0,MOTEUR_DROIT);*/
+        SendMessageDirect((unsigned char*) "Bonjour", 7);
+        __delay32(40000000);
 
-        //PWMSetSpeedConsigne(15.0,MOTEUR_DROIT);
     }
+
 }
 
 //fin main

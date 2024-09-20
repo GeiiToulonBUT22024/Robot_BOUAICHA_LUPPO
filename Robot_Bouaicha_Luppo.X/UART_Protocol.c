@@ -4,7 +4,7 @@
 #include "IO.h"
 #include "CB_TX1.h"
 #include "Robot.h"
-#include "asservissement.h"
+//#include "asservissement.h"
 
 //extern volatile ghostPosition;
 
@@ -111,9 +111,9 @@ void UartDecodeMessage(unsigned char c) {
 
 void UartProcessDecodedMessage(int function, int payloadLength, unsigned char* payload) {
     int tabLED[payloadLength];
-    int tabPos[payloadLength];
-    float KpX, KiX, KdX, LimPX, LimIX, LimDX;
-    float KpT, KiT, KdT, LimPT, LimIT, LimDT;
+    //int tabPos[payloadLength];
+    //float KpX, KiX, KdX, LimPX, LimIX, LimDX;
+    //float KpT, KiT, KdT, LimPT, LimIT, LimDT;
 
     switch (function) {
         case 0x20:
@@ -142,7 +142,7 @@ void UartProcessDecodedMessage(int function, int payloadLength, unsigned char* p
             }
             break;
 
-        case 0x50:
+        /*case 0x50:
             if(payloadLength == 8)
             {
                 ghostPosition.waypointX = getFloat(payload, 0);
@@ -188,7 +188,7 @@ void UartProcessDecodedMessage(int function, int payloadLength, unsigned char* p
 
         case 0x91:
             robotState.vitesseConsigneAngulaire = getFloat(payload, 0);
-            break;
+            break;*/
     }
 }
 //*************************************************************************/

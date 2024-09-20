@@ -36,6 +36,26 @@ void InitIO()
     _TRISE2=0;
     _TRISE3=0;
 
+    //*************************************************************
+    // Unlock Registers
+    //*************************************************************
+    __builtin_write_OSCCONL(OSCCON & ~(1 << 6));
+
+    //Assignation des remappable pins
+
+    _U1RXR = 78; //Remappe la RPI24 sur l?éentre Rx1
+    _RP79R = 0b00001; //Remappe la sortie Tx1 vers RP36
+    
+  // Configuration des pins remappables  
+    //******************** QEI *****************
+    _QEA2R = 97; //assign QEI A to pin RP97
+    _QEB2R = 96; //assign QEI B to pin RP96
+    _QEA1R = 70; //assign QEI A to pin RP70
+    _QEB1R = 69; //assign QEI B to pin RP69
+    //*************************************************************
+    // Lock Registers
+    //*************************************************************
+    __builtin_write_OSCCONL(OSCCON | (1 << 6));
     /****************************************************************************************************/
     // Gestion des pin remappables
     /****************************************************************************************************/
